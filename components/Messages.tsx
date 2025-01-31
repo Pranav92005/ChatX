@@ -34,7 +34,7 @@ export default function Messages({initialMessages,sessionId,chatId,chatPartner,s
           pusherClient.unsubscribe(toPusherKey(`chat:${chatId}`));
           pusherClient.unbind('incoming-message',messageHandler);
       }
-          },[])
+          },[chatId])
 
 
 

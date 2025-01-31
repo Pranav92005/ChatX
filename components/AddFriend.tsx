@@ -77,7 +77,7 @@ export default function AddFriend() {
               required
             />
           </div>
-          <Button type="submit" className="w-full" disabled={isSubmitting}>
+          <Button type="submit" className="w-full bg-black text-white rounded-xl hover:bg-slate-700" disabled={isSubmitting} >
             {isSubmitting ? 'Sending Request...' : 'Add Friend'}
           </Button>
         </form>

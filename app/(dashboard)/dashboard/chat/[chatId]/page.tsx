@@ -7,9 +7,9 @@ import Messages from "@/components/Messages";
 import ChatInput from "@/components/ChatInput";
 import Image from "next/image";
 import { messageArrayValidator } from "@/lib/validators/messageValidator";
-interface PageProps {
-  params: { chatId: string };
-}
+// interface PageProps {
+//   params: { chatId: string };
+// }
 
 
 
@@ -35,8 +35,8 @@ return messages;
     }
   }
 
-export default async function Page({ params }: Awaited<PageProps> ) {
-  const {chatId} = await  params
+export default async function Page({ params }:{params:{chatId:string}}) {
+  const {chatId} =   params
   
 
   const session=  await getServerSession(handler)

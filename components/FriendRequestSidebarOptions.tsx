@@ -30,7 +30,7 @@ export default function FriendRequestSidebarOptions({initialUnseenRequestcount,s
       pusherClient.unsubscribe(toPusherKey(`user:${sessionId}:incoming_friend_requests`));
       pusherClient.unbind('incoming_friend_requests',friendRequestHandler);
   }
-      },[])
+      },[sessionId])
   
   return (
     <div>

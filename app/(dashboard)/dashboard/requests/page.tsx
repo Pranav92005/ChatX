@@ -23,7 +23,7 @@ if(!session) notFound()
 
   return (
     <main className="pt-8 flex flex-col items-center justify-center mt-4">
-           <h1 className="font-bold text-5xl mb-8 bg-slate-300">Friend Requests</h1>
+           <h1 className="font-bold text-5xl mb-8 ">Friend Requests</h1>
            <div className="flex flex-col gap-4">
             <FriendRequest incomingFriendRequests={incomingRequests} sessionId={session.user.id} />
 

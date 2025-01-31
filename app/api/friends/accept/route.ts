@@ -4,6 +4,8 @@ import z from 'zod';
 import { handler } from '../../auth/[...nextauth]/route';
 import { fetchRedis } from '@/helper/redis';
 import { db } from '@/lib/db';
+import { pusherServer } from '@/lib/pusher';
+import { toPusherKey } from '@/lib/utils';
 
 
 export async function POST(req:Request){
@@ -29,6 +31,8 @@ export async function POST(req:Request){
        if(!hasFriendRequest){
            return new Response('No friend request',{status:400});
        }
+
+       pusherServer.trigger(toPusherKey(`user:${idToAdd}:friends`),'new_friend',{});
 //adding userid to friends list of both users
        await db.sadd(`user:${session.user.id}:friends`,idToAdd);
          await db.sadd(`user:${idToAdd}:friends`,session.user.id);
