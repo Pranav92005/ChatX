@@ -25,6 +25,8 @@ export default function AddFriend() {
     try {
         // Make the API request to send the friend request
         const session = await getSession();
+
+        if(!session)return;
         // {console.log(session)}
          await axios.post("/api/friends/add", { email }
          
