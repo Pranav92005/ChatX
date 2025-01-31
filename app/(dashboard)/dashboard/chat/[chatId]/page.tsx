@@ -35,8 +35,8 @@ return messages;
     }
   }
 
-export default async function Page({ params }: PageProps ) {
-  const {chatId} = params
+export default async function Page({ params }: Awaited<PageProps> ) {
+  const {chatId} = await  params
   
 
   const session=  await getServerSession(handler)
