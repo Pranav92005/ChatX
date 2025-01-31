@@ -26,7 +26,11 @@ return messages;
     }
     
      catch (error) {
-      // console.log('function getChatMessages error',error);
+      console.log('function getChatMessages error',error);
+
+      
+
+
       notFound();
       
     }

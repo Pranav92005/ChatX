@@ -8,7 +8,7 @@ import { toPusherKey } from "@/lib/utils";
 import toast from "react-hot-toast";
 import {type  Toast } from "react-hot-toast";
 import UnseenChatToast from "./UnseenChatToast";
-import path from "path";
+
 
 
 interface SidebarChatListProps {

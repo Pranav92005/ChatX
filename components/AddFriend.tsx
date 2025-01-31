@@ -25,8 +25,8 @@ export default function AddFriend() {
     try {
         // Make the API request to send the friend request
         const session = await getSession();
-        {console.log(session)}
-        const response = await axios.post("/api/friends/add", { email }
+        // {console.log(session)}
+         await axios.post("/api/friends/add", { email }
          
         );
   
@@ -65,7 +65,7 @@ export default function AddFriend() {
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="email">Friend's Email</Label>
+            <Label htmlFor="email">Friend Email</Label>
             <Input
               id="email"
               type="email"

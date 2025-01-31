@@ -31,6 +31,7 @@ export default function ChatInput({chatPartner,chatId}:ChatInputProps) {
           textareaRef.current?.focus();
           
         } catch (error) {
+          console.error('An error occurred:', error);
           toast.error('Failed to send message');
           
         }

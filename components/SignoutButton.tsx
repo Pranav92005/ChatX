@@ -15,6 +15,7 @@ async function handleSignout(){
     }
     catch(e){
         toast.error('Failed to signout')
+        console.error('An error occurred:', e);
     }
     finally{
         setSignout(false)
