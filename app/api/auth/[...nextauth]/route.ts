@@ -1,6 +1,4 @@
-
 import GoogleProvider from "next-auth/providers/google";
-
 import { UpstashRedisAdapter } from "@next-auth/upstash-redis-adapter";
 import { db } from "@/lib/db";
 import NextAuth, { NextAuthOptions } from "next-auth";
@@ -20,7 +18,7 @@ function googleCredentials() {
   return { clientId, clientSecret };
 }
 
-export const handler:NextAuthOptions = {
+export const handler: NextAuthOptions = {
   adapter: UpstashRedisAdapter(db),
   session: {
     strategy: "jwt",
@@ -36,24 +34,17 @@ export const handler:NextAuthOptions = {
   ],
   callbacks: {
     async jwt({ token, user }) {
-      
-
       if (user) {
-        // Assign user ID when user object is available
         token.id = user.id;
-         
       }
 
       try {
-        // Fetch user from the database based on token.id
         const dbUser = await db.get(`user:${token.id}`) as User | null;
 
         if (!dbUser) {
-        //   console.log("No user found in the database for token.id:", token.id);
-          return token; // Return token as is if user is not found in the database
+          return token;
         }
 
-        // Ensure that user data is added to the token
         return {
           id: dbUser.id,
           name: dbUser.name,
@@ -62,32 +53,29 @@ export const handler:NextAuthOptions = {
         };
       } catch (error) {
         console.error("Error retrieving user from database:", error);
-        return token; // Return token without any changes if an error occurs
+        return token;
       }
     },
 
     async session({ session, token }) {
-    //   console.log("Session callback called. Token:", token);
-      // Ensure token.id exists before assigning it to the session
       if (token?.id) {
-        session.user.id = token.id;  // Assign token.id to session.user.id
+        session.user.id = token.id;
         session.user.name = token.name;
         session.user.email = token.email;
         session.user.image = token.picture;
-        console.log("Session populated with user:", session.user); // Debugging log
+        console.log("Session populated with user:", session.user);
       } else {
-        console.log("Token is missing id:", token); // Log if `id` is missing in token
+        console.log("Token is missing id:", token);
       }
-      return session; // Return the session with the populated user object
+      return session;
     },
 
     async redirect() {
-      return "/dashboard"; // Redirect to the dashboard after successful login
+      return "/dashboard";
     },
   },
   secret: process.env.NEXTAUTH_SECRET,
 };
 
-export const GET = NextAuth(handler);
 export const POST = NextAuth(handler);
-
+export const GET = NextAuth(handler);
