@@ -18,7 +18,7 @@ function googleCredentials() {
   return { clientId, clientSecret };
 }
 
-export const handler: NextAuthOptions = {
+export const authOptions: NextAuthOptions = {
   adapter: UpstashRedisAdapter(db),
   session: {
     strategy: "jwt",
@@ -77,5 +77,6 @@ export const handler: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
 };
 
-export const POST = NextAuth(handler);
-export const GET = NextAuth(handler);
+// Pass the config to NextAuth and export GET and POST handlers
+const handler = NextAuth(authOptions);
+export { handler as GET, handler as POST };

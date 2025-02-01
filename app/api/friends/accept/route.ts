@@ -1,7 +1,7 @@
 
 import { getServerSession } from 'next-auth';
 import z from 'zod';
-import { handler } from '../../auth/[...nextauth]/route';
+import { authOptions } from '../../auth/[...nextauth]/route';
 import { fetchRedis } from '@/helper/redis';
 import { db } from '@/lib/db';
 import { pusherServer } from '@/lib/pusher';
@@ -14,7 +14,7 @@ export async function POST(req:Request){
         
         const {id:idToAdd}=z.object({id:z.string()}).parse(body);   
 
-        const session= await getServerSession(handler);
+        const session= await getServerSession(authOptions);
         if(!session){
             return new Response('Unauthorized',{status:401});
         }

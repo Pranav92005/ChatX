@@ -1,6 +1,6 @@
 import { EmailValidator } from "@/lib/validators/EmailValidator";
 import { getServerSession, Session } from "next-auth";
-import { handler } from "../../auth/[...nextauth]/route";
+import { authOptions} from "../../auth/[...nextauth]/route";
 import { fetchRedis } from "@/helper/redis";
 import { db } from "@/lib/db";
 import { z } from "zod";
@@ -20,7 +20,7 @@ export async function POST(req: Request) {
     }
 
     // Get server session
-    const session: Session = await getServerSession(handler) as Session;
+    const session: Session = await getServerSession(authOptions) as Session;
     // console.log("Fetched session:", session);
 
     if (!session) {

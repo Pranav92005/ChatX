@@ -1,5 +1,5 @@
 import { getServerSession } from "next-auth";
-import { handler } from "../../auth/[...nextauth]/route";
+import { authOptions } from "../../auth/[...nextauth]/route";
 import { fetchRedis } from "@/helper/redis";
 import { db } from "@/lib/db";
 import {nanoid} from "nanoid";
@@ -10,7 +10,7 @@ import { toPusherKey } from "@/lib/utils";
 export async function POST(req: Request) {
     try {
         const {text,chatId}:{text:string,chatId:string}=await req.json();
-        const session=await getServerSession(handler);
+        const session=await getServerSession(authOptions);
         if(!session){
             return new Response('Unauthorized',{status:401});
         }

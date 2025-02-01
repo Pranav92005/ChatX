@@ -1,5 +1,5 @@
 import { getServerSession } from "next-auth"
-import { handler } from "@/app/api/auth/[...nextauth]/route"
+import { authOptions } from "@/app/api/auth/[...nextauth]/route"
 import { notFound } from "next/navigation"
 import { getFriendsByUserId } from "@/helper/get-friends-by-user-id"
 import { fetchRedis } from "@/helper/redis"
@@ -9,7 +9,7 @@ import Link from "next/link"
 import Image from "next/image"
 
 export default async function page() {
-const session = await getServerSession(handler)
+const session = await getServerSession(authOptions)
 if (!session) notFound()
 
   const friends = await getFriendsByUserId(session.user.id)

@@ -1,6 +1,6 @@
  import {  Icons } from '@/components/icons'
 import SignOutButton from '@/components/SignoutButton'
- import { handler } from '@/app/api/auth/[...nextauth]/route'
+ import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 import { getServerSession } from 'next-auth'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -36,7 +36,7 @@ const sidebarOptions: SidebarOption[] = [
 ]
 
 const Layout = async ({ children }: LayoutProps) => {
-  const session = await getServerSession(handler)
+  const session = await getServerSession(authOptions)
   if (!session) notFound()
 
 const friends=await getFriendsByUserId(session.user.id);

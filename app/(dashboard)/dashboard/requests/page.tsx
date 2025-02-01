@@ -1,12 +1,12 @@
 import { getServerSession } from "next-auth"
-import { handler } from "@/app/api/auth/[...nextauth]/route"
+import { authOptions } from "@/app/api/auth/[...nextauth]/route"
 import { notFound } from "next/navigation"
 import { fetchRedis } from "@/helper/redis"
 import FriendRequest from "@/components/FriendRequest"
 
 
 export default async  function page() {
-    const session=  await getServerSession(handler)
+    const session=  await getServerSession(authOptions)
 if(!session) notFound()
 
     const  incomingSenderIds=(await fetchRedis('smembers',`user:${session.user.id}:incoming_friend_requests`)) as string[]

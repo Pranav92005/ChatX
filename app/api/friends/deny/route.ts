@@ -1,13 +1,13 @@
 import z from 'zod';
 import { getServerSession } from 'next-auth';
-import { handler } from '../../auth/[...nextauth]/route';
+import { authOptions } from '../../auth/[...nextauth]/route';
 import { db } from '@/lib/db';
 
 export async function POST(req:Request){
     try {
         const body=await req.json();
     const {id:idToDeny}=z.object({id:z.string()}).parse(body);
-    const session= await getServerSession(handler);
+    const session= await getServerSession(authOptions);
 
     if(!session){
         return new Response('Unauthorized',{status:401});

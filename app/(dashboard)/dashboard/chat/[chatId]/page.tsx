@@ -1,5 +1,5 @@
   import { getServerSession } from "next-auth";
-  import { handler } from "@/app/api/auth/[...nextauth]/route";
+  import { authOptions } from "@/app/api/auth/[...nextauth]/route";
   import { notFound } from "next/navigation";
 // import { db } from "@/lib/db";
 import { fetchRedis } from "@/helper/redis";
@@ -41,7 +41,7 @@ export default async function Page({ params }: PageProps) {
   const { chatId } = await params
   
 
-  const session=  await getServerSession(handler)
+  const session=  await getServerSession(authOptions)
   if(!session) notFound()
 
     const { user } = session
