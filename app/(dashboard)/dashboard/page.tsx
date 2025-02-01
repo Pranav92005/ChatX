@@ -1,5 +1,5 @@
 import { getServerSession } from "next-auth"
-import { authOptions } from "@/app/api/auth/[...nextauth]/route"
+import { authOptions } from "@/lib/authoptions";
 import { notFound } from "next/navigation"
 import { getFriendsByUserId } from "@/helper/get-friends-by-user-id"
 import { fetchRedis } from "@/helper/redis"

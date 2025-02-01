@@ -1,6 +1,6 @@
 import z from 'zod';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '../../auth/[...nextauth]/route';
+import { authOptions } from "@/lib/authoptions";
 import { db } from '@/lib/db';
 
 export async function POST(req:Request){

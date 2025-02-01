@@ -1,6 +1,6 @@
 import { EmailValidator } from "@/lib/validators/EmailValidator";
 import { getServerSession, Session } from "next-auth";
-import { authOptions} from "../../auth/[...nextauth]/route";
+import { authOptions } from "@/lib/authoptions";
 import { fetchRedis } from "@/helper/redis";
 import { db } from "@/lib/db";
 import { z } from "zod";

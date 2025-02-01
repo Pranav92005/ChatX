@@ -1,5 +1,5 @@
 import { getServerSession } from "next-auth";
-import { authOptions } from "../../auth/[...nextauth]/route";
+import { authOptions } from "@/lib/authoptions";
 import { fetchRedis } from "@/helper/redis";
 import { db } from "@/lib/db";
 import {nanoid} from "nanoid";
