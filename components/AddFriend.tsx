@@ -12,6 +12,7 @@ import axios, { AxiosError } from 'axios'
 // import { error } from 'console'
 
 export default function AddFriend() {
+ 
   const [email, setEmail] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
 
